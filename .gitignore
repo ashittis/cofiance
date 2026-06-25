@@ -1,0 +1,23 @@
+# dependencies / virtualenvs
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# builds
+.next/
+out/
+build/
+
+# env / secrets (never commit) — .env.example IS tracked
+.env
+.env*.local
+backend/.env
+frontend/.env
+frontend/.env*.local
+
+# misc
+.DS_Store
+*.log
+*.tsbuildinfo
