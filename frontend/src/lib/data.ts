@@ -36,7 +36,7 @@ export const VERTICALS: Vertical[] = [
     name: "Hospitality & Facilities",
     tagline: "Trained hands for kitchens, washrooms & soft services",
     blurb:
-      "We staff and run the unseen engine of hotels, restaurants and commercial buildings — commercial kitchen support, deep washroom and facility maintenance, housekeeping and janitorial crews — with workers screened, uniformed and drilled on hygiene and safety before they ever reach your floor.",
+      "We staff and run the unseen engine of hotels, restaurants and commercial buildings (commercial kitchen support, deep washroom and facility maintenance, housekeeping and janitorial crews), with workers screened, uniformed and drilled on hygiene and safety before they ever reach your floor.",
     capabilities: [
       "Commercial kitchen stewarding & dishwashing crews",
       "Washroom & restroom deep-maintenance teams",
@@ -51,7 +51,7 @@ export const VERTICALS: Vertical[] = [
     name: "Construction & Logistics Support",
     tagline: "On-site tactical labor for material handling & sites",
     blurb:
-      "From moving bulk cable wiring out of storage to transporting firefighting-system piping and packaging hardware and fasteners, we supply reliable on-site labor that keeps construction and logistics operations moving — trained on load handling, site safety and equipment basics.",
+      "From moving bulk cable wiring out of storage to transporting firefighting-system piping and packaging hardware and fasteners, we supply reliable on-site labor that keeps construction and logistics operations moving, trained on load handling, site safety and equipment basics.",
     capabilities: [
       "Bulk material handling & shifting crews",
       "Cable-wiring and conduit movement from stores",
@@ -82,7 +82,7 @@ export const STEPS = [
   {
     n: "01",
     title: "Recruit",
-    desc: "We actively source skilled and unskilled workers through field drives, referrals and partner ITIs — building a steady pipeline ahead of demand.",
+    desc: "We actively source skilled and unskilled workers through field drives, referrals and partner ITIs, building a steady pipeline ahead of demand.",
     image: img("recruitment,interview", 800, 600, 71),
   },
   {
@@ -94,13 +94,13 @@ export const STEPS = [
   {
     n: "03",
     title: "Train",
-    desc: "Dedicated programs drill role-specific skills — kitchen hygiene, facility care, load handling, site safety — so workers arrive job-ready, not raw.",
+    desc: "Dedicated programs drill role-specific skills (kitchen hygiene, facility care, load handling, site safety) so workers arrive job-ready, not raw.",
     image: img("vocational,training,classroom", 800, 600, 41),
   },
   {
     n: "04",
     title: "Deploy",
-    desc: "We place uniformed, documented teams on-site with a clear scope, reporting line and shift plan — usually within days of a request.",
+    desc: "We place uniformed, documented teams on-site with a clear scope, reporting line and shift plan, usually within days of a request.",
     image: img("worker,uniform,onsite", 800, 600, 74),
   },
   {
@@ -155,7 +155,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const OUTLETS: Outlet[] = [
-// Live client outlets — Confiance Hospitality Services. Static fallback mirroring
+// Live client outlets: Confiance Hospitality Services. Static fallback mirroring
 // the backend seed; the directory normally fetches these live from the API.
   { outlet: "By The Bottle", company: "By The Bottle", sector: "Hospitality", city: "Jubilee Hills", state: "Telangana", active: true },
   { outlet: "ECIL Gismat", company: "Gismat", sector: "Hospitality", city: "ECIL", state: "Telangana", active: true },

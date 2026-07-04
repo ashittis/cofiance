@@ -1,47 +1,106 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { RemoteImage } from "@/components/ui/RemoteImage";
-import { VERTICALS, STEPS, INDUSTRIES } from "@/lib/data";
+import { VERTICALS, STEPS, INDUSTRIES, type Vertical } from "@/lib/data";
 import { IMAGES } from "@/lib/images";
 
-/* Services preview — two vertical cards */
+/* Services preview: two vertical cards */
 export function HomeServices() {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const yBlob = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 50, reduce ? 0 : -50]);
+
+  const rise = (delay: number) => ({
+    initial: { opacity: 0, y: reduce ? 0 : 16 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { delay, duration: 0.55, ease: "easeOut" as const },
+  });
+
   return (
-    <Section className="py-20">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <SectionHeading
-          eyebrow="What we do"
-          title="Two verticals, fully staffed"
-          subtitle="We keep the hardest-to-fill roles covered with trained, screened, deployment-ready workers."
-        />
-        <Link href="/services" className="btn-outline shrink-0">
-          All services →
-        </Link>
-      </div>
-      <div className="mt-10 grid gap-5 md:grid-cols-2">
-        {VERTICALS.map((v) => (
-          <Link
-            key={v.slug}
-            href={`/services#${v.slug}`}
-            className="group overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-card transition-all hover:-translate-y-1"
-          >
-            <RemoteImage src={v.image} alt={v.name} rounded="rounded-none" className="aspect-[16/9] w-full" />
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-ink">{v.name}</h3>
-              <p className="mt-1 text-sm font-medium text-muted">{v.tagline}</p>
-              <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted">{v.blurb}</p>
-              <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-ink">
-                Explore <span className="transition-transform group-hover:translate-x-1">→</span>
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </Section>
+    <div ref={ref} className="relative overflow-hidden">
+      <motion.div
+        aria-hidden
+        style={{ y: yBlob }}
+        className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-lime opacity-[0.10] blur-3xl"
+      />
+      <Section className="relative py-20">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <motion.div {...rise(0)}>
+            <SectionHeading
+              eyebrow="What we do"
+              title="Two verticals, fully staffed"
+              subtitle="We keep the hardest-to-fill roles covered with trained, screened, deployment-ready workers."
+            />
+          </motion.div>
+          <motion.div {...rise(0.1)}>
+            <Link href="/services" className="btn-outline shrink-0">
+              All services →
+            </Link>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+          className="mt-10 grid gap-5 md:grid-cols-2"
+        >
+          {VERTICALS.map((v, i) => (
+            <VerticalCard key={v.slug} v={v} i={i} />
+          ))}
+        </motion.div>
+      </Section>
+    </div>
   );
 }
 
-/* Process preview — compact 5-step strip */
+function VerticalCard({ v, i }: { v: Vertical; i: number }) {
+  const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const yImg = useTransform(scrollYProgress, [0, 1], [reduce ? 0 : 24, reduce ? 0 : -24]);
+
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: reduce ? 0 : 26 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+      }}
+      whileHover={reduce ? undefined : { y: -8 }}
+    >
+      <Link
+        href={`/services#${v.slug}`}
+        className="group block overflow-hidden rounded-2xl border border-[#ebebeb] bg-white shadow-card transition-colors duration-200 hover:border-lime"
+      >
+        <div ref={ref} className="relative aspect-[16/9] overflow-hidden">
+          <motion.div style={{ y: yImg, scale: reduce ? 1 : 1.18 }} className="absolute inset-0">
+            <RemoteImage src={v.image} alt={v.name} rounded="rounded-none" className="h-full w-full" />
+          </motion.div>
+          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-lime text-sm font-extrabold text-ink shadow-[0_4px_14px_rgba(0,0,0,0.15)]">
+            0{i + 1}
+          </span>
+        </div>
+        <div className="p-7">
+          <h3 className="text-xl font-bold text-ink">{v.name}</h3>
+          <p className="mt-1 text-sm font-medium text-muted">{v.tagline}</p>
+          <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted">{v.blurb}</p>
+          <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-ink">
+            Explore <span className="transition-transform group-hover:translate-x-1">→</span>
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+/* Process preview: compact 5-step strip */
 export function HomeProcess() {
   return (
     <Section className="py-20">
@@ -49,7 +108,7 @@ export function HomeProcess() {
         <SectionHeading
           eyebrow="How we work"
           title="Recruit → Screen → Train → Deploy → Monitor"
-          subtitle="A closed-loop workforce engine — so the quality you're promised is the quality that shows up."
+          subtitle="A closed-loop workforce engine, so the quality you're promised is the quality that shows up."
         />
         <Link href="/how-we-work" className="btn-outline shrink-0">
           See the full process →
@@ -68,7 +127,7 @@ export function HomeProcess() {
   );
 }
 
-/* Clients teaser — industries + link to directory */
+/* Clients teaser: industries + link to directory */
 export function HomeClients() {
   return (
     <Section className="py-20">
@@ -100,7 +159,7 @@ export function HomeClients() {
   );
 }
 
-/* About teaser — mission + image */
+/* About teaser: mission + image */
 export function HomeAbout() {
   return (
     <Section className="py-20">
@@ -110,7 +169,7 @@ export function HomeAbout() {
           <SectionHeading
             eyebrow="Why Confiance"
             title="A workforce partner, not a staffing middleman"
-            subtitle="Most suppliers just forward bodies. We run a managed pipeline — recruiting ahead of demand, training for the actual job, and standing behind quality with on-ground supervision."
+            subtitle="Most suppliers just forward bodies. We run a managed pipeline: recruiting ahead of demand, training for the actual job, and standing behind quality with on-ground supervision."
           />
           <Link href="/about" className="btn-outline mt-7">
             About us →

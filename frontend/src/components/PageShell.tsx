@@ -3,11 +3,11 @@ import { Footer } from "./Footer";
 
 export function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <main className="min-h-screen bg-white">
+    <div className="flex min-h-screen flex-col bg-white">
       <Navbar />
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
-    </main>
+    </div>
   );
 }
 

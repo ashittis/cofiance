@@ -2,7 +2,7 @@ import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 // Single-admin credentials auth. Username/password live in env; on success we
-// mint a JWT session. The admin API key is never exposed to the client — it's
+// mint a JWT session. The admin API key is never exposed to the client, it's
 // only read server-side in lib/admin.ts when calling the FastAPI backend.
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },

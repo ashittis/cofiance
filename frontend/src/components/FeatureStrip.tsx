@@ -3,7 +3,7 @@ import Link from "next/link";
 const FEATURES = [
   {
     title: "Trained & Ready",
-    body: "Every worker passes a dedicated training program before deployment — kitchen ops, facility care, material handling, and safety.",
+    body: "Every worker passes a dedicated training program before deployment: kitchen ops, facility care, material handling, and safety.",
     href: "/services",
     cta: "View training",
     icon: (

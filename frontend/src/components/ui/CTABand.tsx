@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function CTABand({
   title = "Need trained hands on-site?",
-  subtitle = "Tell us the roles and locations — we'll have a screened, uniformed team ready in days.",
+  subtitle = "Tell us the roles and locations, and we'll have a screened, uniformed team ready in days.",
   primary = { label: "Hire Workers", href: "/contact" },
   secondary = { label: "Apply for Work", href: "/apply" },
 }: {

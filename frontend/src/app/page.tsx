@@ -3,24 +3,18 @@ import { Hero } from "@/components/Hero";
 import { LogoStrip } from "@/components/LogoStrip";
 import { FeatureStrip } from "@/components/FeatureStrip";
 import { Footer } from "@/components/Footer";
-import { Section, SectionHeading } from "@/components/ui/Section";
-import { Stats } from "@/components/ui/Stats";
 import { CTABand } from "@/components/ui/CTABand";
-import { CaseStudyCard } from "@/components/CaseStudyCard";
-import Link from "next/link";
-import {
-  HomeServices,
-  HomeProcess,
-  HomeClients,
-  HomeAbout,
-} from "@/components/home/HomeSections";
-import { getCaseStudies } from "@/lib/queries";
+import { HowWeWork } from "@/components/HowWeWork";
+import { ProofOfWork } from "@/components/ProofOfWork";
+import { IndustryMarquee } from "@/components/IndustryMarquee";
+import { Clients } from "@/components/Clients";
+import { WhyConfiance } from "@/components/WhyConfiance";
+import { HomeServices } from "@/components/home/HomeSections";
+import { HomeFaq } from "@/components/home/HomeFaq";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
-  const caseStudies = await getCaseStudies();
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
@@ -30,38 +24,23 @@ export default async function Home() {
       {/* Services */}
       <HomeServices />
 
-      {/* How we work */}
-      <HomeProcess />
+      {/* How we work: interactive timeline + stats */}
+      <HowWeWork />
 
-      {/* Stats */}
-      <Section className="py-6">
-        <Stats />
-      </Section>
+      {/* Proof of work: case studies accordion */}
+      <ProofOfWork />
 
-      {/* Case studies */}
-      <Section className="py-20">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            eyebrow="Proof of work"
-            title="Case studies from the field"
-            subtitle="What we staffed, where, and the outcome that mattered."
-          />
-          <Link href="/how-we-work" className="btn-outline shrink-0">
-            More case studies →
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.slice(0, 3).map((cs) => (
-            <CaseStudyCard key={cs.title} cs={cs} />
-          ))}
-        </div>
-      </Section>
+      {/* Industry ticker */}
+      <IndustryMarquee />
 
       {/* Clients */}
-      <HomeClients />
+      <Clients />
 
-      {/* About */}
-      <HomeAbout />
+      {/* Why Confiance */}
+      <WhyConfiance />
+
+      {/* FAQ */}
+      <HomeFaq />
 
       {/* Features */}
       <FeatureStrip />

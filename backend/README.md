@@ -39,5 +39,5 @@ app/
 ## Env
 | var            | default                                                    |
 |----------------|------------------------------------------------------------|
-| `DATABASE_URL` | `postgresql+psycopg2://akashsubramanian@localhost:5432/confiance` |
+| `DATABASE_URL` | `postgresql+psycopg://akashsubramanian@localhost:5432/confiance` |
 | `CORS_ORIGINS` | `http://localhost:3000`                                    |
