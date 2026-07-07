@@ -131,3 +131,18 @@ class CaseStudy(Base, TimestampMixin):
     image: Mapped[str] = mapped_column(String)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class Enquiry(Base, TimestampMixin):
+    __tablename__ = "enquiries"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=_uuid)
+    name: Mapped[str] = mapped_column(String)
+    company: Mapped[str | None] = mapped_column(String, nullable=True)
+    phone: Mapped[str] = mapped_column(String)
+    city: Mapped[str | None] = mapped_column(String, nullable=True)
+    services: Mapped[str] = mapped_column(String, default="")  # comma-joined
+    message: Mapped[str | None] = mapped_column(Text, nullable=True)
+    status: Mapped[str] = mapped_column(String, default="New")  # New|Contacted|Closed
+    source: Mapped[str] = mapped_column(String, default="website")
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True)

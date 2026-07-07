@@ -3,7 +3,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..email import send_application_confirmation
+from ..email import send_application_confirmation, send_application_notification
 from ..models import Applicant, ServiceVertical
 from ..schemas import ApplicantCreate, ApplyResponse
 
@@ -35,7 +35,23 @@ def create_application(
     db.commit()
     db.refresh(applicant)
 
-    # Fire confirmation email out-of-band (skipped if RESEND_API_KEY is unset).
+    # Notify the owner of every registration (skipped if RESEND_API_KEY /
+    # NOTIFY_EMAIL unset). Pass plain scalars so the task never touches a
+    # detached ORM instance after the request finishes.
+    background.add_task(
+        send_application_notification,
+        {
+            "full_name": applicant.full_name,
+            "phone": applicant.phone,
+            "email": applicant.email,
+            "city": applicant.city,
+            "sector_pref": applicant.sector_pref,
+            "experience": applicant.experience,
+            "availability": applicant.availability,
+        },
+    )
+
+    # Fire the applicant confirmation out-of-band too (only if they gave an email).
     if applicant.email:
         background.add_task(
             send_application_confirmation, applicant.email, applicant.full_name

@@ -52,6 +52,22 @@ class ApplyResponse(BaseModel):
     id: str
 
 
+# ---- Enquiries (Contact / hire-staff form) ----
+class EnquiryCreate(BaseModel):
+    name: str = Field(min_length=1)
+    phone: str = Field(min_length=5)
+    company: str = ""
+    city: str = ""
+    services: str = ""  # frontend joins the selected chips with ", "
+    message: str = ""
+
+
+class EnquiryResponse(BaseModel):
+    ok: bool = True
+    persisted: bool = True
+    id: str
+
+
 # ---- Applicants (admin foundation) ----
 class ApplicantOut(BaseModel):
     id: str

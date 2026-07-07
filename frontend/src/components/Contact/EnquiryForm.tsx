@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Chip } from "@/components/Apply/Chip";
 
@@ -14,13 +14,47 @@ export function EnquiryForm() {
   const reduce = useReducedMotion();
   const [done, setDone] = useState(false);
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
   const [services, setServices] = useState<string[]>([]);
+  const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const valid = name.trim() !== "" && /^\+?[\d\s-]{7,}$/.test(phone);
 
   const toggleService = (s: string) =>
     setServices((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]));
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!valid || submitting) return;
+    setSubmitting(true);
+    setError("");
+    try {
+      const api =
+        process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") || "http://localhost:8000";
+      const res = await fetch(`${api}/enquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          company,
+          phone,
+          city,
+          services: services.join(", "),
+          message,
+        }),
+      });
+      if (res.ok) setDone(true);
+      else setError("Something went wrong. Please try again.");
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <motion.div
@@ -68,10 +102,7 @@ export function EnquiryForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (valid) setDone(true);
-            }}
+            onSubmit={handleSubmit}
           >
             <h2 className="text-[19px] font-extrabold tracking-[-.025em] text-ink">
               Send us your requirement
@@ -94,7 +125,12 @@ export function EnquiryForm() {
                 <span className={labelCls}>
                   Company <span className="font-normal text-[#ccc]">(optional)</span>
                 </span>
-                <input className={inputCls} placeholder="Company name" />
+                <input
+                  className={inputCls}
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="Company name"
+                />
               </label>
             </div>
 
@@ -110,7 +146,12 @@ export function EnquiryForm() {
               </label>
               <label className="block">
                 <span className={labelCls}>City</span>
-                <input className={inputCls} placeholder="City" />
+                <input
+                  className={inputCls}
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="City"
+                />
               </label>
             </div>
 
@@ -132,6 +173,8 @@ export function EnquiryForm() {
               <span className={labelCls}>Tell us more</span>
               <textarea
                 rows={4}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className={`${inputCls} resize-none`}
                 placeholder="e.g. 20 kitchen stewards for a hotel in Hyderabad, starting next month"
               />
@@ -139,11 +182,15 @@ export function EnquiryForm() {
 
             <button
               type="submit"
-              disabled={!valid}
+              disabled={!valid || submitting}
               className="mt-5 w-full rounded-xl bg-ink py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0"
             >
-              Send enquiry →
+              {submitting ? "Sending…" : "Send enquiry →"}
             </button>
+
+            {error && (
+              <p className="mt-3 text-center text-[13px] text-red-500">{error}</p>
+            )}
           </motion.form>
         )}
       </AnimatePresence>

@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .database import Base, engine
-from .routers import admin, applicants, apply, case_studies, clients
+from .routers import admin, applicants, apply, case_studies, clients, enquiries
 
 # Create tables on startup if they don't exist (seed.py does a full reset).
 Base.metadata.create_all(bind=engine)
@@ -21,6 +21,7 @@ app.add_middleware(
 app.include_router(clients.router, tags=["clients"])
 app.include_router(case_studies.router, tags=["case-studies"])
 app.include_router(apply.router, tags=["apply"])
+app.include_router(enquiries.router, tags=["enquiries"])
 app.include_router(applicants.router, tags=["applicants"])
 app.include_router(admin.router, tags=["admin"])
 

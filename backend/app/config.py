@@ -17,6 +17,10 @@ class Settings(BaseSettings):
     resend_api_key: str = ""
     resend_from: str = "Confiance Services <onboarding@resend.dev>"
 
+    # Owner/admin address that receives new-submission notifications
+    # (Apply registrations + Contact enquiries). Skipped if empty.
+    notify_email: str = ""
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
