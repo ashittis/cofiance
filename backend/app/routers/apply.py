@@ -35,26 +35,24 @@ def create_application(
     db.commit()
     db.refresh(applicant)
 
-    # Notify the owner of every registration (skipped if RESEND_API_KEY /
-    # NOTIFY_EMAIL unset). Pass plain scalars so the task never touches a
-    # detached ORM instance after the request finishes.
-    background.add_task(
-        send_application_notification,
-        {
-            "full_name": applicant.full_name,
-            "phone": applicant.phone,
-            "email": applicant.email,
-            "city": applicant.city,
-            "sector_pref": applicant.sector_pref,
-            "experience": applicant.experience,
-            "availability": applicant.availability,
-        },
-    )
+    # Plain scalars so the background tasks never touch a detached ORM instance
+    # after the request finishes.
+    data = {
+        "full_name": applicant.full_name,
+        "phone": applicant.phone,
+        "email": applicant.email,
+        "city": applicant.city,
+        "sector_pref": applicant.sector_pref,
+        "experience": applicant.experience,
+        "availability": applicant.availability,
+    }
 
-    # Fire the applicant confirmation out-of-band too (only if they gave an email).
+    # Notify the owner of every registration (skipped if RESEND_API_KEY /
+    # NOTIFY_EMAIL unset).
+    background.add_task(send_application_notification, data)
+
+    # Send the applicant a confirmation too (only if they gave an email).
     if applicant.email:
-        background.add_task(
-            send_application_confirmation, applicant.email, applicant.full_name
-        )
+        background.add_task(send_application_confirmation, data)
 
     return ApplyResponse(ok=True, persisted=True, id=applicant.id)
