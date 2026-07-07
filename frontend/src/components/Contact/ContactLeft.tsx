@@ -11,8 +11,8 @@ type Info = {
 };
 
 const INFO: Info[] = [
-  { label: "Email", value: "hello@confiance.services", href: "mailto:hello@confiance.services", icon: "mail" },
-  { label: "Phone", value: "+91 90000 00000", href: "tel:+919000000000", icon: "phone" },
+  { label: "Email", value: "hospitalityservice@gmail.com", href: "mailto:hospitalityservice@gmail.com", icon: "mail" },
+  { label: "Phone", value: "+91 97016 67470", href: "tel:+919701667470", icon: "phone" },
   { label: "Hours", value: "Mon–Sat · 9:00–19:00 IST", icon: "clock" },
   { label: "Coverage", value: "Hyderabad · Mumbai · Pune · Chennai (+10 cities)", icon: "pin" },
 ];

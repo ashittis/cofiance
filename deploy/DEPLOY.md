@@ -13,17 +13,21 @@ One Ubuntu box runs everything: **Next.js** (frontend) + **FastAPI** (backend) +
 - Push this repo to GitHub (so you can `git clone` it on the server). Commit the `deploy/` folder too.
 - Have your `.pem` key and your GoDaddy login ready.
 
-## 1. Launch the instance
-EC2 → Launch instance:
-- Region **ap-south-1 (Mumbai)** · Name `confiance`
-- AMI **Ubuntu Server 24.04 LTS** · Type **t3.medium**
-- Key pair: create + download `.pem`
+## 1. Launch the instance ✅ (already done)
+You launched a **t3.medium** named `confiance` in **us-east-1 (N. Virginia)** — that's fine (Mumbai
+would've been slightly lower latency for India, but no need to redo). Settings used:
+- Region: **us-east-1 (N. Virginia)** — keep ALL the AWS steps below in this same region
+- AMI **Ubuntu Server 24.04 LTS** · Type **t3.medium** · Key pair `confiance-key` (`.pem` downloaded)
 - Security group inbound: **22 (My IP)**, **80 (Anywhere)**, **443 (Anywhere)** — nothing else
-- Storage **30 GB gp3** → Launch
+- Storage **30 GB gp3**
 
 ## 2. Static IP + DNS
-1. EC2 → **Elastic IPs** → Allocate → Associate to the instance. Copy the IP.
-2. GoDaddy → **confianceservices.in → DNS → Manage** → add three **A records** (TTL 600):
+1. EC2 → **Network & Security → Elastic IPs** (region must be **us-east-1**, same as the instance) →
+   **Allocate Elastic IP address** → keep defaults (Amazon's pool) → **Allocate**.
+2. Select the new IP → **Actions ▾ → Associate Elastic IP address** → Resource type **Instance** →
+   choose **`confiance`** → **Associate**. The Instances list now shows it in the *Elastic IP* column.
+   **Copy that IP** (this is your permanent address — the temporary public IP changes on stop/start).
+3. GoDaddy → **confianceservices.in → DNS → Manage** → add three **A records** (TTL 600):
    - `@`   → A → `<Elastic IP>`
    - `www` → A → `<Elastic IP>`
    - `api` → A → `<Elastic IP>`
