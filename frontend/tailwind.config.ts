@@ -12,10 +12,10 @@ const config: Config = {
         ink: "#0a0a0a",
         muted: "#6b7280",
         lime: {
-          DEFAULT: "#dfff5e",
-          soft: "#eaffa0",
+          DEFAULT: "#1E8B80",
+          soft: "#7FC3BD",
         },
-        mint: "#cdeccb",
+        mint: "#CFEBE8",
         periwinkle: "#cdd5f5",
       },
       fontFamily: {
@@ -28,7 +28,7 @@ const config: Config = {
       },
       backgroundImage: {
         "hero-gradient":
-          "linear-gradient(125deg, #e4ff62 0%, #d7f0a8 30%, #cdeccb 55%, #cdd5f5 100%)",
+          "linear-gradient(125deg, #1E8B80 0%, #6FBDB6 32%, #B9E1DD 58%, #cdd5f5 100%)",
       },
       keyframes: {
         "float-slow": {

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-// Plain <img> for temporary remote placeholders (loremflickr). Swappable later
-// for next/image once real assets land. grayscale-on-idle keeps the look cohesive.
+// Plain <img> for local, content-matched photos served from /public/images
+// (routed through lib/images.ts). object-cover keeps every slot cohesive.
 export function RemoteImage({
   src,
   alt,

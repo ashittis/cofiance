@@ -12,7 +12,7 @@ const CARDS = [
   },
   {
     label: "Vision",
-    body: "To become India's most trusted workforce engine across hospitality, facilities, construction and logistics, known for people who show up and standards that hold.",
+    body: "To become India's most trusted workforce engine across hospitality, facilities and logistics, known for people who show up and standards that hold.",
     bg: "bg-periwinkle/40",
     icon: "eye" as const,
   },

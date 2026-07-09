@@ -12,7 +12,7 @@ import { ServicesTraining } from "@/components/Services/ServicesTraining";
 export const metadata: Metadata = {
   title: "Services - Confiance Services",
   description:
-    "Two workforce verticals: Hospitality & Facilities and Construction & Logistics Support. Trained, screened, deployment-ready labor.",
+    "Two workforce verticals: Hospitality & Facilities and Logistics Support. Trained, screened, deployment-ready labor.",
 };
 
 export default function Page() {

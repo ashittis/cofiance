@@ -83,7 +83,7 @@ function VerticalCard({ v, i }: { v: Vertical; i: number }) {
           <motion.div style={{ y: yImg, scale: reduce ? 1 : 1.18 }} className="absolute inset-0">
             <RemoteImage src={v.image} alt={v.name} rounded="rounded-none" className="h-full w-full" />
           </motion.div>
-          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-lime text-sm font-extrabold text-ink shadow-[0_4px_14px_rgba(0,0,0,0.15)]">
+          <span className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-lime text-sm font-extrabold text-white shadow-[0_4px_14px_rgba(0,0,0,0.15)]">
             0{i + 1}
           </span>
         </div>
@@ -137,7 +137,7 @@ export function HomeClients() {
             <SectionHeading
               eyebrow="Clients"
               title="Trusted across industries"
-              subtitle="From luxury hotels to active construction sites, our crews are deployed across 120+ outlets and 14 cities."
+              subtitle="From luxury hotels to busy warehouses, our crews are deployed across 120+ outlets and 14 cities."
             />
             <Link href="/clients" className="btn-ink mt-7">
               Browse the directory →

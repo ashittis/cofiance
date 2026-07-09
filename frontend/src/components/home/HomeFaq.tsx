@@ -9,7 +9,7 @@ import { Pill } from "@/components/ui/Pill";
 const FAQS = [
   {
     q: "What kind of workers do you provide?",
-    a: "Trained, screened staff across two verticals — hospitality & facilities (kitchen stewards, housekeeping, washroom and facility maintenance) and construction & logistics (material handling, warehouse and site labor).",
+    a: "Trained, screened staff across two verticals — hospitality & facilities (kitchen stewards, housekeeping, washroom and facility maintenance) and logistics (material handling and warehouse labor).",
   },
   {
     q: "How fast can you deploy a team?",

@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { StarLogo } from "./StarLogo";
 
 const COLS = [
   {
     title: "Services",
     links: [
       { label: "Hospitality & Facilities", href: "/services" },
-      { label: "Construction & Logistics", href: "/services" },
+      { label: "Logistics Support", href: "/services" },
       { label: "How We Work", href: "/how-we-work" },
     ],
   },
@@ -32,9 +31,13 @@ export function Footer() {
     <footer className="border-t border-[#f0f0f0] bg-[#fafaf8] px-6 py-14 lg:px-10">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2 text-ink">
-            <StarLogo className="h-7 w-7" />
-            <span className="text-lg font-bold tracking-tight">Confiance Services</span>
+          <div className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/confiance-logo.png"
+              alt="Confiance Hospitality Services"
+              className="h-[52px] w-auto"
+            />
           </div>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#888]">
             Secure and reliable workforce solutions: recruiting, training, and

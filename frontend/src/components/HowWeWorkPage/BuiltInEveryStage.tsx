@@ -18,7 +18,7 @@ function Icon({ name }: { name: Item["icon"] }) {
     className: "h-[18px] w-[18px]",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#0a0a0a",
+    stroke: "#ffffff",
     strokeWidth: 2,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,

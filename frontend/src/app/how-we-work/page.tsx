@@ -16,7 +16,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "How We Work - Confiance Services",
   description:
-    "Our operational workflow: Recruit, Screen, Train, Deploy, Monitor, plus real case studies across hospitality, facilities, construction and logistics.",
+    "Our operational workflow: Recruit, Screen, Train, Deploy, Monitor, plus real case studies across hospitality, facilities and logistics.",
 };
 
 export default async function Page() {

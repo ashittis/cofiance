@@ -16,8 +16,8 @@ export function FormStepper({ currentStep }: { currentStep: number }) {
                 initial={false}
                 animate={{
                   backgroundColor:
-                    state === "done" ? "#dfff5e" : state === "active" ? "#0a0a0a" : "#f0f0f0",
-                  color: state === "idle" ? "#bbbbbb" : state === "active" ? "#ffffff" : "#0a0a0a",
+                    state === "done" ? "#1E8B80" : state === "active" ? "#0a0a0a" : "#f0f0f0",
+                  color: state === "idle" ? "#bbbbbb" : "#ffffff",
                 }}
                 transition={{ duration: 0.3 }}
                 className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-extrabold"

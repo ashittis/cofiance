@@ -8,8 +8,6 @@ const INDUSTRIES = [
   "F&B / Kitchen",
   "Facility",
   "Warehousing",
-  "Security",
-  "Construction",
 ];
 const AVAILABILITY = ["Immediate", "Within 2 weeks", "Next month"];
 const EXPERIENCE = ["No experience (will train)", "0–1 year", "1–3 years", "3+ years"];

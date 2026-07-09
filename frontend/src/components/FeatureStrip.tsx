@@ -12,7 +12,7 @@ const FEATURES = [
   },
   {
     title: "Client Directory",
-    body: "Browse the outlets and companies we actively supply trained labor to, across hospitality, facilities, construction, and logistics.",
+    body: "Browse the outlets and companies we actively supply trained labor to, across hospitality, facilities, and logistics.",
     href: "/clients",
     cta: "Browse clients",
     icon: (
@@ -41,7 +41,7 @@ export function FeatureStrip() {
             className="group rounded-2xl border border-ink/10 bg-white p-7 shadow-card transition-all hover:-translate-y-1 hover:border-ink/20"
           >
             <span className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-lime">
-              <svg className="h-6 w-6 text-ink" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                 {f.icon}
               </svg>
             </span>

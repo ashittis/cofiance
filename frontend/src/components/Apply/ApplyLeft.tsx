@@ -66,7 +66,7 @@ export function ApplyLeft() {
               <svg className="h-[11px] w-[11px]" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M2 6l3 3 5-5"
-                  stroke="#0a0a0a"
+                  stroke="#ffffff"
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -87,7 +87,7 @@ export function ApplyLeft() {
             <div
               key={a.initials}
               className={`flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-white text-[11px] font-bold ${
-                a.lime ? "bg-lime text-ink" : "bg-[#e8e8e4] text-[#888]"
+                a.lime ? "bg-lime text-white" : "bg-[#e8e8e4] text-[#888]"
               } ${i > 0 ? "-ml-2" : ""}`}
             >
               {a.initials}

@@ -8,7 +8,7 @@ const labelCls = "mb-1.5 block text-xs font-semibold tracking-[.02em] text-[#666
 const inputCls =
   "w-full rounded-[10px] border-[1.5px] border-[#e8e8e4] bg-[#fafaf8] px-3.5 py-2.5 text-sm text-ink outline-none transition-colors placeholder:text-[#ccc] focus:border-ink focus:bg-white";
 
-const SERVICES = ["Hospitality", "Facilities", "Construction", "Logistics"];
+const SERVICES = ["Hospitality", "Facilities", "Logistics"];
 
 export function EnquiryForm() {
   const reduce = useReducedMotion();
@@ -81,7 +81,7 @@ export function EnquiryForm() {
               <svg className="h-7 w-7" viewBox="0 0 28 28" fill="none">
                 <path
                   d="M5 14l7 7L23 7"
-                  stroke="#0a0a0a"
+                  stroke="#ffffff"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"

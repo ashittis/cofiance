@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { StarLogo } from "./StarLogo";
 
 const NAV = [
   { label: "Services", href: "/services", caret: true },
@@ -18,11 +17,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-2 text-ink">
-          <StarLogo className="h-7 w-7" />
-          <span className="text-lg font-bold tracking-tight">
-            Confiance Services
-          </span>
+        <Link href="/" className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/confiance-logo.png"
+            alt="Confiance Hospitality Services"
+            className="h-[52px] w-auto"
+          />
         </Link>
 
         {/* Center nav (desktop) */}

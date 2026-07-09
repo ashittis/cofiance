@@ -22,7 +22,7 @@ function Icon({ name }: { name: Info["icon"] }) {
     className: "h-[15px] w-[15px]",
     viewBox: "0 0 24 24",
     fill: "none",
-    stroke: "#0a0a0a",
+    stroke: "#ffffff",
     strokeWidth: 2,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,

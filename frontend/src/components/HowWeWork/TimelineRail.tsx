@@ -47,7 +47,7 @@ export function TimelineRail() {
               >
                 <span
                   className={`text-[13px] font-extrabold tracking-[-0.02em] transition-colors duration-200 ${
-                    isActive ? "text-ink" : "text-[#bbb] group-hover:text-ink"
+                    isActive ? "text-white" : "text-[#bbb] group-hover:text-white"
                   }`}
                 >
                   {`0${i + 1}`}

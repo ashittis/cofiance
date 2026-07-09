@@ -72,7 +72,7 @@ export function StepReview({
         type="button"
         onClick={submit}
         disabled={submitting}
-        className="mt-5 w-full rounded-xl bg-lime py-3.5 text-sm font-bold text-ink transition-transform hover:-translate-y-px disabled:opacity-60 disabled:hover:translate-y-0"
+        className="mt-5 w-full rounded-xl bg-lime py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-px disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {submitting ? "Submitting…" : "Submit application ✓"}
       </button>

@@ -21,7 +21,7 @@ export function CTABand({
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={primary.href}
-            className="inline-flex items-center justify-center rounded-full bg-lime px-7 py-3.5 text-sm font-semibold text-ink transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center justify-center rounded-full bg-lime px-7 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]"
           >
             {primary.label}
           </Link>

@@ -17,7 +17,7 @@ export function Chip({ label, selected, onToggle }: ChipProps) {
       aria-pressed={selected}
       className={`inline-flex items-center gap-1.5 rounded-full border-[1.5px] px-3.5 py-2 text-[13px] transition-colors ${
         selected
-          ? "border-lime bg-lime font-bold text-ink"
+          ? "border-lime bg-lime font-bold text-white"
           : "border-[#e8e8e4] bg-[#fafaf8] font-medium text-[#555] hover:border-ink hover:text-ink"
       }`}
     >

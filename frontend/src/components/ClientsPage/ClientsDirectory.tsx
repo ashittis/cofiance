@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { Outlet } from "@/lib/data";
 
-const SECTORS = ["All", "Hospitality", "Facilities", "Construction", "Logistics"];
+const SECTORS = ["All", "Hospitality", "Facilities", "Logistics"];
 
 const selectCls =
   "rounded-full border border-[#ebebeb] bg-white px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-ink";
@@ -127,7 +127,7 @@ export function ClientsDirectory({ outlets }: { outlets: Outlet[] }) {
           className="mt-3 flex flex-col items-center justify-center rounded-2xl border border-[#ebebeb] bg-white px-6 py-16 text-center"
         >
           <span className="flex h-14 w-14 items-center justify-center rounded-full bg-lime">
-            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>

@@ -21,7 +21,7 @@ export function StepSuccess() {
         <svg className="h-7 w-7" viewBox="0 0 28 28" fill="none">
           <path
             d="M5 14l7 7L23 7"
-            stroke="#0a0a0a"
+            stroke="#ffffff"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"

@@ -1,9 +1,15 @@
 """Seed content (mirrors the frontend's static fallback in src/lib/data.ts)."""
-from urllib.parse import quote
+
+# Case-study keyword -> local photo served from the frontend's /public/images.
+_PHOTO_FILES = {
+    "hotel,kitchen,staff": "case-kitchen",
+    "cleaning,washroom,facility": "case-washroom",
+    "warehouse,packaging,worker": "case-warehouse",
+}
 
 
 def img(keywords: str, w: int = 800, h: int = 600, lock: int = 1) -> str:
-    return f"https://loremflickr.com/{w}/{h}/{quote(keywords)}?lock={lock}"
+    return f"/images/{_PHOTO_FILES.get(keywords, 'services-hero')}.jpg"
 
 
 VERTICALS = [
@@ -18,13 +24,12 @@ VERTICALS = [
         ),
     },
     {
-        "name": "Construction & Logistics Support",
-        "slug": "construction-logistics",
+        "name": "Logistics Support",
+        "slug": "logistics-support",
         "blurb": (
-            "From moving bulk cable wiring out of storage to transporting firefighting-system "
-            "piping and packaging hardware and fasteners, we supply reliable on-site labor that "
-            "keeps construction and logistics operations moving — trained on load handling, site "
-            "safety and equipment basics."
+            "From bulk material handling to packaging hardware and fasteners and running kitted "
+            "lines, we supply reliable on-site labor that keeps warehouse and logistics operations "
+            "moving — trained on load handling, safety and equipment basics."
         ),
     },
 ]
@@ -36,7 +41,7 @@ OUTLETS = [
     ("ECIL Gismat", "Gismat", "Hospitality", "ECIL", "Telangana", True),
     ("Ameerpet Gismat", "Gismat", "Hospitality", "Ameerpet", "Telangana", True),
     ("Dilsukhnagar Gismat", "Gismat", "Hospitality", "Dilsukhnagar", "Telangana", True),
-    ("NB Dilsukhnagar", "NB", "Hospitality", "Dilsukhnagar", "Telangana", True),
+    ("Naidu Biriyani, Dilsukhnagar", "Naidu Biriyani", "Hospitality", "Dilsukhnagar", "Telangana", True),
     ("Kondapur Gismat", "Gismat", "Hospitality", "Kondapur", "Telangana", True),
     ("Bangalore Gismat", "Gismat", "Hospitality", "Bangalore", "Karnataka", True),
     ("BBQ Spice", "BBQ Spice", "Hospitality", "Abids", "Telangana", True),
@@ -45,15 +50,15 @@ OUTLETS = [
     ("The Funnel Hills", "The Funnel", "Hospitality", "Begumpet", "Telangana", True),
     ("Gismat Chandanagar", "Gismat", "Hospitality", "Chandanagar", "Telangana", True),
     ("Meklas Spice", "Meklas Spice", "Hospitality", "SR Nagar", "Telangana", True),
-    ("NB Gachibowli", "NB", "Hospitality", "Gachibowli", "Telangana", True),
+    ("Naidu Biriyani, Gachibowli", "Naidu Biriyani", "Hospitality", "Gachibowli", "Telangana", True),
     ("Flip Side", "Flip Side", "Hospitality", "Financial District", "Telangana", True),
     ("Dancing Plate", "Dancing Plate", "Hospitality", "Financial District", "Telangana", True),
-    ("SR Nagar NB", "NB", "Hospitality", "SR Nagar", "Telangana", True),
+    ("Naidu Biriyani, SR Nagar", "Naidu Biriyani", "Hospitality", "SR Nagar", "Telangana", True),
     ("Lake Dist", "Lake Dist", "Hospitality", "Necklace Road", "Telangana", True),
     ("Gismat Suncity", "Gismat", "Hospitality", "Suncity", "Telangana", True),
-    ("Captains", "Captains", "Hospitality", "KPHB", "Telangana", True),
+    ("Captains Cuts", "Captains Cuts", "Hospitality", "KPHB", "Telangana", True),
     ("Guntur Karam", "Guntur Karam", "Hospitality", "Chandanagar", "Telangana", True),
-    ("Palace Height", "Palace Height", "Hospitality", "Abids", "Telangana", True),
+    ("Palace Heights", "Palace Heights", "Hospitality", "Abids", "Telangana", True),
     ("Prime Rose", "Prime Rose", "Hospitality", "Ameerpet", "Telangana", True),
     ("Amritsari Haveli Abids", "Amritsari Haveli", "Hospitality", "Abids", "Telangana", True),
     ("Pista House Medchal", "Pista House", "Hospitality", "Medchal", "Telangana", True),
@@ -63,7 +68,7 @@ OUTLETS = [
     ("Achha Telugu", "Achha Telugu", "Hospitality", "Necklace Road", "Telangana", True),
     ("Pista House Nalgonda", "Pista House", "Hospitality", "Nalgonda", "Telangana", True),
     ("909 Pubs", "909 Pubs", "Hospitality", "Kothapet", "Telangana", True),
-    ("Sedhyam KPHB", "Sedhyam", "Hospitality", "KPHB", "Telangana", True),
+    ("Sedyam Telugu Kitchen, KPHB", "Sedyam Telugu Kitchen", "Hospitality", "KPHB", "Telangana", True),
     ("Hiyya KPHB", "Hiyya", "Hospitality", "KPHB", "Telangana", True),
     ("Hiyya Vizag", "Hiyya", "Hospitality", "Visakhapatnam", "Andhra Pradesh", True),
     ("Hiyya Guntur", "Hiyya", "Hospitality", "Guntur", "Andhra Pradesh", True),
@@ -91,28 +96,6 @@ CASE_STUDIES = [
             "lifting average cleanliness scores from 3.4 to 4.7 within two months."
         ),
         "image": img("cleaning,washroom,facility", 800, 600, 82),
-    },
-    {
-        "title": "Cable-wiring shift for a data centre fit-out",
-        "sector": "Construction",
-        "location": "Mumbai",
-        "metric": "40 tonnes moved",
-        "body": (
-            "Supplied material-handling crews to move bulk cable reels and conduit from storage "
-            "to floor through a tight 3-week fit-out window, on schedule and incident-free."
-        ),
-        "image": img("construction,cable,site", 800, 600, 83),
-    },
-    {
-        "title": "Firefighting-pipe staging for a tower",
-        "sector": "Construction",
-        "location": "Chennai",
-        "metric": "12 floors staged",
-        "body": (
-            "Transported and floor-staged firefighting-system piping for a commercial high-rise, "
-            "coordinating with MEP contractors to keep installation crews fed with material."
-        ),
-        "image": img("pipe,construction,worker", 800, 600, 84),
     },
     {
         "title": "Hardware kitting line for a logistics hub",

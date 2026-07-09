@@ -6,7 +6,6 @@ export const industries = [
   "Shopping Malls",
   "Factories",
   "Warehouses",
-  "Construction Sites",
   "Banks & Offices",
   "Gated Communities",
   "Automobile Showrooms",

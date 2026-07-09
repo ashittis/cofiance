@@ -36,13 +36,13 @@ export function Clients() {
               Trusted across industries
             </h2>
             <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted">
-              From luxury hotels to active construction sites, our crews are
+              From luxury hotels to busy warehouses, our crews are
               deployed across 120+ outlets and 14 cities.
             </p>
           </div>
           <Link
             href="/clients"
-            className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-lime px-[22px] py-3 text-[13px] font-bold text-ink transition-transform hover:-translate-y-0.5"
+            className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-lime px-[22px] py-3 text-[13px] font-bold text-white transition-transform hover:-translate-y-0.5"
           >
             Browse the directory →
           </Link>

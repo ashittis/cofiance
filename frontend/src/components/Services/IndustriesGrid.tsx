@@ -22,7 +22,7 @@ export function IndustriesGrid() {
           Where our workers show up
         </h2>
         <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-          From luxury hotels to active construction sites, our crews are trained for the realities of
+          From luxury hotels to busy warehouses, our crews are trained for the realities of
           each environment.
         </p>
       </motion.div>

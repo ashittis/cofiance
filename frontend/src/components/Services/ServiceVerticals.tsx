@@ -58,7 +58,7 @@ function VerticalBlock({ v, i }: { v: Vertical; i: number }) {
                 className="flex items-start gap-3 text-sm text-ink"
               >
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-lime">
-                  <svg className="h-3 w-3 text-ink" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="h-3 w-3 text-white" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" />
                   </svg>
                 </span>

@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     detail: [
       {
-        text: "Housekeeping, security coordination, and common area maintenance running 24/7 with supervisor oversight built in. ",
+        text: "Housekeeping and common-area maintenance running 24/7 with supervisor oversight built in. ",
       },
       {
         text: "The contract has been renewed for 3 consecutive years",

@@ -16,7 +16,7 @@ export function PillarList() {
           key={p.num}
           className="group flex items-start gap-4 border-b border-[#f0f0f0] px-5 sm:px-9 py-[22px] transition-colors last:border-b-0 hover:bg-white"
         >
-          <span className="mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f0f0f0] text-[12px] font-extrabold text-[#bbb] transition-colors duration-200 group-hover:bg-lime group-hover:text-ink">
+          <span className="mt-px flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f0f0f0] text-[12px] font-extrabold text-[#bbb] transition-colors duration-200 group-hover:bg-lime group-hover:text-white">
             {p.num}
           </span>
           <div>

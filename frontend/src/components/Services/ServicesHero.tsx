@@ -68,7 +68,7 @@ export function ServicesHero() {
           </motion.h1>
           <motion.p {...rise(0.3)} className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
             We recruit, train and place skilled and unskilled labor where it&apos;s hardest to keep
-            staffed: commercial kitchens and facilities, and the moving parts of construction and
+            staffed: commercial kitchens and facilities, and the moving parts of
             logistics.
           </motion.p>
           <motion.div {...rise(0.4)} className="mt-8 flex flex-wrap items-center gap-3">

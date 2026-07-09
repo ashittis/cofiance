@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Clients - Confiance Services",
   description:
-    "The outlets and companies we actively supply trained labor to, across hospitality, facilities, construction and logistics.",
+    "The outlets and companies we actively supply trained labor to, across hospitality, facilities and logistics.",
 };
 
 export default async function Page() {

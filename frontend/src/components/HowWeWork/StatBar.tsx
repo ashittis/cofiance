@@ -30,7 +30,7 @@ function StatValue({ stat, run }: { stat: Stat; run: boolean }) {
   return (
     <p className="font-display text-[clamp(40px,5vw,60px)] font-extrabold leading-none tracking-[-0.04em] text-ink">
       {stat.format ? n.toLocaleString() : n}
-      {stat.suffix && <span className="ml-0.5 text-lime">{stat.suffix}</span>}
+      {stat.suffix && <span className="ml-0.5 text-ink">{stat.suffix}</span>}
     </p>
   );
 }

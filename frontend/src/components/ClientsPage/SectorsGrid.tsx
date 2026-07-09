@@ -22,7 +22,7 @@ export function SectorsGrid({ industries }: { industries: string[] }) {
         </h2>
         <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
           Our crews adapt to the standards of each environment, from hospital-grade hygiene to
-          construction-site safety.
+          warehouse-floor safety.
         </p>
       </motion.div>
 
@@ -40,7 +40,7 @@ export function SectorsGrid({ industries }: { industries: string[] }) {
               hidden: { opacity: 0, y: reduce ? 0 : 10, scale: reduce ? 1 : 0.95 },
               show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: "easeOut" } },
             }}
-            className="cursor-default rounded-full border border-[#ebebeb] bg-white px-4 py-2 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:border-lime hover:bg-lime"
+            className="cursor-default rounded-full border border-[#ebebeb] bg-white px-4 py-2 text-sm font-medium text-ink transition-all duration-200 hover:-translate-y-0.5 hover:border-lime hover:bg-lime hover:text-white"
           >
             {ind}
           </motion.span>

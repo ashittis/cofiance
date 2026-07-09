@@ -108,7 +108,7 @@ export function HeroVisual() {
   );
 }
 
-// Grayscale construction-worker bust (hard-hat + hi-vis vest), placeholder vector.
+// Grayscale worker bust (hard-hat + hi-vis vest), placeholder vector.
 // Tonal separation (hat lighter than head, head lighter than body) keeps it
 // reading as a person rather than a flat blob. Swap with a real photo later.
 function WorkerSilhouette({ className = "" }: { className?: string }) {
@@ -138,9 +138,9 @@ function WorkerSilhouette({ className = "" }: { className?: string }) {
 
       {/* hi-vis vest panel */}
       <path d="M82 250c-2-44 6-70 38-70s40 26 38 70z" fill="url(#vest)" />
-      {/* reflective stripes (lime) */}
-      <path d="M86 214h68" stroke="#dfff5e" strokeWidth="5" opacity="0.85" />
-      <path d="M112 184v66M128 184v66" stroke="#dfff5e" strokeWidth="5" opacity="0.85" />
+      {/* reflective stripes (teal) */}
+      <path d="M86 214h68" stroke="#1E8B80" strokeWidth="5" opacity="0.85" />
+      <path d="M112 184v66M128 184v66" stroke="#1E8B80" strokeWidth="5" opacity="0.85" />
       {/* vest zip */}
       <path d="M120 180v70" stroke="#101012" strokeWidth="3" />
 

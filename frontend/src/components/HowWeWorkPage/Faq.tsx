@@ -24,7 +24,7 @@ const FAQS = [
   },
   {
     q: "Which sectors and cities do you cover?",
-    a: "Hospitality & facilities and construction & logistics, across 14 cities and growing.",
+    a: "Hospitality & facilities and logistics, across 14 cities and growing.",
   },
 ];
 

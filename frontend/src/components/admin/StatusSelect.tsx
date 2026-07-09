@@ -9,7 +9,7 @@ const TONE: Record<string, string> = {
   New: "bg-ink/5 text-ink",
   Screened: "bg-periwinkle/50 text-ink",
   Enrolled: "bg-mint/60 text-ink",
-  Placed: "bg-lime text-ink",
+  Placed: "bg-lime text-white",
 };
 
 export function StatusSelect({ id, status }: { id: string; status: string }) {
