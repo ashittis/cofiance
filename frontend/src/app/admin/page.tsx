@@ -21,6 +21,8 @@ export default async function Page() {
   const cards = [
     { label: "Total applicants", value: stats.applicantsTotal, href: "/admin/applicants" },
     { label: "New (unreviewed)", value: stats.applicantsByStatus.New ?? 0, href: "/admin/applicants" },
+    { label: "Total enquiries", value: stats.enquiriesTotal, href: "/admin/enquiries" },
+    { label: "New enquiries", value: stats.enquiriesNew, href: "/admin/enquiries" },
     { label: "Active outlets", value: stats.outletsActive, href: "/admin/outlets" },
     { label: "Total outlets", value: stats.outletsTotal, href: "/admin/outlets" },
   ];
@@ -30,7 +32,7 @@ export default async function Page() {
       <h1 className="font-display text-2xl font-semibold text-ink">Dashboard</h1>
       <p className="mt-1 text-sm text-muted">Live operational snapshot.</p>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((c) => (
           <Link
             key={c.label}

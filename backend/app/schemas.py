@@ -68,6 +68,22 @@ class EnquiryResponse(BaseModel):
     id: str
 
 
+class EnquiryOut(BaseModel):
+    id: str
+    name: str
+    company: str | None
+    phone: str
+    city: str | None
+    services: str
+    message: str | None
+    status: str
+    createdAt: datetime
+
+
+class EnquiryStatusUpdate(BaseModel):
+    status: str  # New | Contacted | Closed
+
+
 # ---- Applicants (admin foundation) ----
 class ApplicantOut(BaseModel):
     id: str
@@ -120,3 +136,5 @@ class AdminStats(BaseModel):
     applicantsByStatus: dict[str, int]
     outletsActive: int
     outletsTotal: int
+    enquiriesTotal: int = 0
+    enquiriesNew: int = 0

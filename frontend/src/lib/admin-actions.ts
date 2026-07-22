@@ -22,6 +22,12 @@ export async function updateApplicantStatus(id: string, status: string) {
   revalidatePath("/admin");
 }
 
+export async function updateEnquiryStatus(id: string, status: string) {
+  await adminMutate(`/admin/enquiries/${id}`, "PATCH", { status });
+  revalidatePath("/admin/enquiries");
+  revalidatePath("/admin");
+}
+
 export async function createOutlet(formData: FormData) {
   await adminMutate("/admin/outlets", "POST", {
     outletName: String(formData.get("outletName") ?? ""),

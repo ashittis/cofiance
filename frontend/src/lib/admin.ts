@@ -11,6 +11,8 @@ export type AdminStats = {
   applicantsByStatus: Record<string, number>;
   outletsActive: number;
   outletsTotal: number;
+  enquiriesTotal: number;
+  enquiriesNew: number;
 };
 
 export type AdminApplicant = {
@@ -22,6 +24,18 @@ export type AdminApplicant = {
   sectorPref: string;
   experience: string;
   availability: string;
+  status: string;
+  createdAt: string;
+};
+
+export type AdminEnquiry = {
+  id: string;
+  name: string;
+  company: string | null;
+  phone: string;
+  city: string | null;
+  services: string;
+  message: string | null;
   status: string;
   createdAt: string;
 };
@@ -47,6 +61,7 @@ async function adminGet<T>(path: string): Promise<T> {
 
 export const getStats = () => adminGet<AdminStats>("/admin/stats");
 export const getApplicants = () => adminGet<AdminApplicant[]>("/admin/applicants");
+export const getEnquiries = () => adminGet<AdminEnquiry[]>("/admin/enquiries");
 export const getAdminOutlets = () => adminGet<AdminOutlet[]>("/admin/outlets");
 
 export const ADMIN_API = API;

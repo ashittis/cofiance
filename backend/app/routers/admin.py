@@ -4,11 +4,13 @@ from sqlalchemy.orm import Session
 
 from ..auth import require_admin
 from ..database import get_db
-from ..models import Applicant, ClientOutlet
+from ..models import Applicant, ClientOutlet, Enquiry
 from ..schemas import (
     AdminStats,
     ApplicantOut,
     ApplicantStatusUpdate,
+    EnquiryOut,
+    EnquiryStatusUpdate,
     OutletAdminOut,
     OutletCreate,
     OutletUpdate,
@@ -18,6 +20,7 @@ from ..schemas import (
 router = APIRouter(prefix="/admin", dependencies=[Depends(require_admin)])
 
 VALID_STATUSES = {"New", "Screened", "Enrolled", "Placed"}
+VALID_ENQUIRY_STATUSES = {"New", "Contacted", "Closed"}
 
 
 def _applicant_out(r: Applicant) -> ApplicantOut:
@@ -30,6 +33,20 @@ def _applicant_out(r: Applicant) -> ApplicantOut:
         sectorPref=r.sector_pref,
         experience=r.experience,
         availability=r.availability,
+        status=r.status,
+        createdAt=r.created_at,
+    )
+
+
+def _enquiry_out(r: Enquiry) -> EnquiryOut:
+    return EnquiryOut(
+        id=r.id,
+        name=r.name,
+        company=r.company,
+        phone=r.phone,
+        city=r.city,
+        services=r.services,
+        message=r.message,
         status=r.status,
         createdAt=r.created_at,
     )
@@ -61,11 +78,17 @@ def stats(db: Session = Depends(get_db)):
         )
         or 0
     )
+    enquiries_total = db.scalar(select(func.count()).select_from(Enquiry)) or 0
+    enquiries_new = (
+        db.scalar(select(func.count()).select_from(Enquiry).where(Enquiry.status == "New")) or 0
+    )
     return AdminStats(
         applicantsTotal=total,
         applicantsByStatus={s: by_status.get(s, 0) for s in ["New", "Screened", "Enrolled", "Placed"]},
         outletsActive=outlets_active,
         outletsTotal=outlets_total,
+        enquiriesTotal=enquiries_total,
+        enquiriesNew=enquiries_new,
     )
 
 
@@ -89,6 +112,28 @@ def update_applicant_status(
     db.commit()
     db.refresh(row)
     return _applicant_out(row)
+
+
+# ---- Enquiries (Contact form submissions) ----
+@router.get("/enquiries", response_model=list[EnquiryOut])
+def list_enquiries(db: Session = Depends(get_db)):
+    rows = db.execute(select(Enquiry).order_by(Enquiry.created_at.desc())).scalars().all()
+    return [_enquiry_out(r) for r in rows]
+
+
+@router.patch("/enquiries/{enquiry_id}", response_model=EnquiryOut)
+def update_enquiry_status(
+    enquiry_id: str, payload: EnquiryStatusUpdate, db: Session = Depends(get_db)
+):
+    if payload.status not in VALID_ENQUIRY_STATUSES:
+        raise HTTPException(status_code=422, detail="Invalid status")
+    row = db.get(Enquiry, enquiry_id)
+    if not row:
+        raise HTTPException(status_code=404, detail="Enquiry not found")
+    row.status = payload.status
+    db.commit()
+    db.refresh(row)
+    return _enquiry_out(row)
 
 
 # ---- Outlets CRUD ----
