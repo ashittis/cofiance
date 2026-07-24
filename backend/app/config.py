@@ -21,6 +21,15 @@ class Settings(BaseSettings):
     # (Apply registrations + Contact enquiries). Skipped if empty.
     notify_email: str = ""
 
+    # WhatsApp Cloud API owner alerts (optional — skipped unless token +
+    # phone_id + recipient are all set). Secrets live in .env, never in git.
+    whatsapp_token: str = ""
+    whatsapp_phone_id: str = ""
+    notify_whatsapp_to: str = ""
+    whatsapp_lang: str = "en"
+    whatsapp_template_application: str = "new_job_application"
+    whatsapp_template_enquiry: str = "new_client_enquiry"
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

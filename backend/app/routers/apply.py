@@ -3,7 +3,11 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..email import send_application_confirmation, send_application_notification
+from ..email import (
+    send_application_confirmation,
+    send_application_notification,
+    send_application_whatsapp,
+)
 from ..models import Applicant, ServiceVertical
 from ..schemas import ApplicantCreate, ApplyResponse
 
@@ -50,6 +54,9 @@ def create_application(
     # Notify the owner of every registration (skipped if RESEND_API_KEY /
     # NOTIFY_EMAIL unset).
     background.add_task(send_application_notification, data)
+
+    # Same alert over WhatsApp (skipped if the WhatsApp creds are unset).
+    background.add_task(send_application_whatsapp, data)
 
     # Send the applicant a confirmation too (only if they gave an email).
     if applicant.email:

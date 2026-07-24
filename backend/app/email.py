@@ -6,6 +6,7 @@ import httpx
 from .config import settings
 
 RESEND_ENDPOINT = "https://api.resend.com/emails"
+WHATSAPP_GRAPH = "https://graph.facebook.com/v21.0"
 
 # Brand palette (matches the website: lime accent on ink, off-white grounds).
 _INK = "#0a0a0a"
@@ -46,6 +47,67 @@ def _deliver(to: list[str], subject: str, html_body: str) -> bool:
     except Exception as ex:  # network/email failures must not break the flow
         print(f"[email] send failed: {ex}")
         return False
+
+
+# --------------------------------------------------------------------------- #
+# WhatsApp Cloud API delivery (owner alerts)
+# --------------------------------------------------------------------------- #
+
+def _send_whatsapp(template: str, params: list[str]) -> bool:
+    """Send one approved template to the owner's WhatsApp via Meta Cloud API.
+    No-op (returns False) unless token + phone_id + recipient are all set, and
+    swallows every error, so the request path is never broken by WhatsApp.
+
+    Template body params must be single-line; None/empty become '-' and any
+    newlines are flattened (WhatsApp rejects newlines/tabs in parameters)."""
+    token = settings.whatsapp_token
+    phone_id = settings.whatsapp_phone_id
+    to = settings.notify_whatsapp_to
+    if not token or not phone_id or not to:
+        return False
+
+    parameters = [
+        {"type": "text", "text": " ".join(str(p or "-").split()) or "-"}
+        for p in params
+    ]
+    try:
+        resp = httpx.post(
+            f"{WHATSAPP_GRAPH}/{phone_id}/messages",
+            headers={"Authorization": f"Bearer {token}"},
+            json={
+                "messaging_product": "whatsapp",
+                "to": to,
+                "type": "template",
+                "template": {
+                    "name": template,
+                    "language": {"code": settings.whatsapp_lang},
+                    "components": [{"type": "body", "parameters": parameters}],
+                },
+            },
+            timeout=10,
+        )
+        if resp.status_code >= 300:
+            print(f"[whatsapp] send failed {resp.status_code}: {resp.text}")
+        return resp.status_code < 300
+    except Exception as ex:  # network/API failures must not break the flow
+        print(f"[whatsapp] send failed: {ex}")
+        return False
+
+
+def send_application_whatsapp(a: dict) -> bool:
+    """Owner alert for a new job application (template new_job_application)."""
+    return _send_whatsapp(
+        settings.whatsapp_template_application,
+        [a.get("full_name"), a.get("phone"), a.get("city"), a.get("sector_pref")],
+    )
+
+
+def send_enquiry_whatsapp(e: dict) -> bool:
+    """Owner alert for a new client enquiry (template new_client_enquiry)."""
+    return _send_whatsapp(
+        settings.whatsapp_template_enquiry,
+        [e.get("name"), e.get("company"), e.get("phone"), e.get("services")],
+    )
 
 
 # --------------------------------------------------------------------------- #

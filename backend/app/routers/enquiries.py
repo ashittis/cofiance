@@ -2,7 +2,7 @@ from fastapi import APIRouter, BackgroundTasks, Depends
 from sqlalchemy.orm import Session
 
 from ..database import get_db
-from ..email import send_enquiry_notification
+from ..email import send_enquiry_notification, send_enquiry_whatsapp
 from ..models import Enquiry
 from ..schemas import EnquiryCreate, EnquiryResponse
 
@@ -28,16 +28,17 @@ def create_enquiry(
     db.refresh(enquiry)
 
     # Notify the owner out-of-band (skipped if RESEND_API_KEY / NOTIFY_EMAIL unset).
-    background.add_task(
-        send_enquiry_notification,
-        {
-            "name": enquiry.name,
-            "company": enquiry.company,
-            "phone": enquiry.phone,
-            "city": enquiry.city,
-            "services": enquiry.services,
-            "message": enquiry.message,
-        },
-    )
+    data = {
+        "name": enquiry.name,
+        "company": enquiry.company,
+        "phone": enquiry.phone,
+        "city": enquiry.city,
+        "services": enquiry.services,
+        "message": enquiry.message,
+    }
+    background.add_task(send_enquiry_notification, data)
+
+    # Same alert over WhatsApp (skipped if the WhatsApp creds are unset).
+    background.add_task(send_enquiry_whatsapp, data)
 
     return EnquiryResponse(ok=True, persisted=True, id=enquiry.id)
